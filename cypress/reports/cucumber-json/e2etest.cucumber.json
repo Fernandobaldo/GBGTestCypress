@@ -1,0 +1,218 @@
+[
+  {
+    "description": "    Test https://gorest.co.in/public/v2 documented at https://gorest.co.in/ using\n    Cypress.\n\n    All the appropriate tests will refer to an existing user named \"Investigate Assessment\".",
+    "keyword": "Feature",
+    "name": "API test assessment",
+    "line": 1,
+    "id": "api-test-assessment",
+    "tags": [],
+    "uri": "e2etest.feature",
+    "elements": [
+      {
+        "id": "api-test-assessment;client-does-not-have-a-token",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Client does not have a token",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "token",
+                      "\"eivneoirvneirvneorinverniveroiv\""
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "the client has not configured a token",
+            "result": {
+              "status": "undefined",
+              "duration": 79000000
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "name",
+                      "gender",
+                      "email",
+                      "status"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "AAAA",
+                      "Male",
+                      "test@test.com",
+                      "active"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 12,
+            "name": "the client tries to create a new user",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "the request is rejected as unauthorized",
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "id": "api-test-assessment;post-a-new-message",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Post a new message",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "the client has a valid token",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "the client tries to create a new user",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "the current user is \"4350\"",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "title",
+                      "body"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "Some title",
+                      "A super interesting message here"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 21,
+            "name": "the user posts a new message",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 24,
+            "name": "the message is created",
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      },
+      {
+        "id": "api-test-assessment;paging",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "Paging",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 27,
+            "name": "the client has a valid token",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 28,
+            "name": "the client requests all users",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "currentPage",
+                      "pageSize"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "1",
+                      "20"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then ",
+            "line": 29,
+            "name": "a paged response is returned",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "the current page has at most 20 items",
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
