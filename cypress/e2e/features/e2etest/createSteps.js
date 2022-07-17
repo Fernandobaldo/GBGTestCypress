@@ -9,22 +9,20 @@ const { PostMessageBean, createUser } = require('../../../support/dto/CreateUser
 
 
 Given('the client has not configured a token', function () {
-
-
+    const token = "";
+    cy.task('token.setToken', token, { log: false });
 })
 
 
 
 
-When('the client tries to create a new user', function async(table) {
+And('the client tries to create a new user', function async(table) {
     const data = table.rowsHash();
     const { name, gender, email, status } = data
     const newUser = new createUser()
         .setName(name || this.name)
         .setGender(gender || this.gender)
         .setStatus(status || this.status)
-
-
     if (email === 'random') {
         newUser.setEmail(this.email);
     } else {
@@ -32,9 +30,6 @@ When('the client tries to create a new user', function async(table) {
     }
 
     createUserOb.call(this, newUser);
-
-
-
 })
 
 Then('the request is rejected as unauthorized', function async() {
@@ -46,11 +41,9 @@ Then('the request is rejected as unauthorized', function async() {
 
 
 When('the client has a valid token', function () {
-
+    const token = "Bearer c785cebc140253bc7cc635aabc26e55afb7f99c2151e017e131be716295fc66d";
+    cy.task('token.setToken', token, { log: false });
 })
-
-
-
 
 
 Then('the user posts a new message', function (table) {
@@ -65,12 +58,9 @@ Then('the user posts a new message', function (table) {
             queryParam.push(`${userId}`);
         }
 
-
         const newMessage = new PostMessageBean()
             .setTitle(this.title || title)
             .setBody(this.body || body)
-
-
 
         if (title === 'true') {
             newMessage.setTitle(this.title);
@@ -83,6 +73,7 @@ Then('the user posts a new message', function (table) {
         } else {
             newMessage.setBody(body);
         }
+
         createMessage.call(this, newMessage, queryParam);
     })
 })
@@ -115,13 +106,11 @@ Then('a paged response is returned', function (table) {
     const data = table.rowsHash();
     const { currentPage, pageSize } = data
     cy.get('@response', { log: false }).then((response) => {
-        const mime = response.headers['x-pagination-limit']
-        const mime2 = response.headers['x-pagination-page']
+        const pageLimit = response.headers['x-pagination-limit']
+        const pagePagination = response.headers['x-pagination-page']
 
-
-
-        expect(mime, 'title').to.be.eq(pageSize);
-        expect(mime2, 'title').to.be.eq(currentPage);
+        expect(pageLimit, 'title').to.be.eq(pageSize);
+        expect(pagePagination, 'title').to.be.eq(currentPage);
 
     })
 })
