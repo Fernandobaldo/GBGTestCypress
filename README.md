@@ -39,8 +39,7 @@ This project uses a `cypress-cucumber-preprocessor`, witch means that testing sc
 If you are not familiar with Cucumber, we recommend reading this [docs](https://cucumber.io/docs/guides/overview).
 
 The “features” files are located on `cypress > integration > features`, separated by services.
-
-	- viagemcontroller           
+       
 	├── cypress
     |   |_e2e
 	│   |   features
@@ -63,8 +62,7 @@ Page objects is a common practice and widely used by automated testing projects.
 The concept itself is came from front-end testing, but the pattern can be applied to backend testing.
 
 It is located on `cypress > support > page_objects` directory, and we use “-page” suffix to files.
-
-	- viagemcontroller             
+           
 	├── cypress
 	│   ├── support
 	│   │   └── page_objects
@@ -84,7 +82,7 @@ The idea of DTO pattern is to have a `Bean objects` that uses JavaScript ES6 cla
 
 Example of usage:
 
-`travel-service-steps.js`
+`createSteps.js`
 
     const CreateUserBean = require('../../../support/dto/CreateUserBean');
     const { createUserOb, createMessage, getAllUser } = require('../../../support/page_object/create-user-page');
