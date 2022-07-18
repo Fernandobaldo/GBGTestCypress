@@ -5,7 +5,7 @@ const addCucumberPreprocessorPlugin =
 const createEsbuildPlugin =
   require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
-const cucumber = require('cypress-cucumber-preprocessor').default
+
 
 
 

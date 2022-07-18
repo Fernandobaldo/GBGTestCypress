@@ -36,6 +36,8 @@ Then('the request is rejected as unauthorized', function async() {
     cy.get('@response', { log: false }).then((response) => {
         const body = response.body;
         expect(body.message).to.be.eq("Authentication failed");
+        expect(response.status, 'statusCode').to.eq(401);
+
     })
 });
 
@@ -82,6 +84,7 @@ Then('the user posts a new message', function (table) {
 Then('the message is created', function (table) {
     const { message } = table.rowsHash();
     cy.get('@response', { log: false }).then((response) => {
+
         const msg = response.body.title
         const bodyMsg = response.body.body
         const userIdMsg = response.body.user_id
@@ -90,6 +93,8 @@ Then('the message is created', function (table) {
                 expect(msg, 'title').to.be.eq(msg);
             expect(bodyMsg, 'bodyMsg').to.be.eq(bodyMsg);
             expect(userIdMsg, 'userIdMsg').to.be.eq(userIdMsg);
+            expect(response.status, 'statusCode').to.eq(201);
+
         }
 
     })
@@ -118,6 +123,8 @@ Then('a paged response is returned', function (table) {
 
 Given('the current page has at most {string} items', function (totalItems) {
     cy.get('@response', { log: false }).then((response) => {
+        expect(response.status, 'statusCode').to.eq(200);
+
         const msg = response.body
         if (msg) {
             expect(response.body.length, 'title').to.be.eq((parseInt(totalItems, 10)))

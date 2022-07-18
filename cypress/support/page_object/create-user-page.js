@@ -9,10 +9,7 @@ function createUserOb(object) {
                 Authorization: token,
             },
             body: object
-        }).as('response').then((response) => {
-            let userId = response.body.id
-            cy.wrap(userId = response.body.id)
-        })
+        }).as('response')
     })
 }
 
