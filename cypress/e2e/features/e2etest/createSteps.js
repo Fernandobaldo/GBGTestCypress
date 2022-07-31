@@ -52,9 +52,13 @@ Then('the user posts a new message', function (table) {
     const data = table.rowsHash();
     const { title, body } = data
     const queryParam = [];
+    cy.wrap(title, { log: false }).as('titleResponse');
+    cy.wrap(body, { log: false }).as('bodyResponse');
+
 
     cy.get('@response', { log: false }).then((response) => {
         const userId = response.body.id
+        cy.wrap(userId, { log: false }).as('userId');
 
         if (userId) {
             queryParam.push(`${userId}`);
@@ -90,9 +94,9 @@ Then('the message is created', function (table) {
         const userIdMsg = response.body.user_id
         if (msg) {
             if (message === 'true')
-                expect(msg, 'title').to.be.eq(msg);
-            expect(bodyMsg, 'bodyMsg').to.be.eq(bodyMsg);
-            expect(userIdMsg, 'userIdMsg').to.be.eq(userIdMsg);
+                expect(msg, 'title').to.be.eq(this.titleResponse);
+            expect(bodyMsg, 'bodyMsg').to.be.eq(this.bodyResponse);
+            expect(userIdMsg, 'userIdMsg').to.be.eq(this.userId);
             expect(response.status, 'statusCode').to.eq(201);
 
         }
